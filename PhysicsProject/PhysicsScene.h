@@ -26,5 +26,7 @@ private:
 	glm::vec2 m_gravity;
 	float m_timeStep;
 	std::set<PhysicsObject*> m_actors;
+
+	
 };
 

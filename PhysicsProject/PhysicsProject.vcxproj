@@ -150,13 +150,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\bootstrap\PhysicsGame.cpp" />
+    <ClCompile Include="PhysicsGame.cpp" />
     <ClCompile Include="PhysicsObject.cpp" />
     <ClCompile Include="PhysicsProject.cpp" />
     <ClCompile Include="PhysicsScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\bootstrap\PhysicsGame.h" />
+    <ClInclude Include="PhysicsGame.h" />
     <ClInclude Include="PhysicsObject.h" />
     <ClInclude Include="PhysicsScene.h" />
   </ItemGroup>

@@ -18,24 +18,24 @@
     <ClCompile Include="PhysicsProject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\bootstrap\PhysicsGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PhysicsScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsGame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\bootstrap\PhysicsGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PhysicsScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

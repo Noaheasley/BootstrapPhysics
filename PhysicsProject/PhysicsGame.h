@@ -18,5 +18,7 @@ public:
 private:
 	aie::Renderer2D* m_renderer;
 	aie::Font* m_font;
+
+	PhysicsScene* m_scene;
 };
 
