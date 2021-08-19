@@ -28,6 +28,6 @@ private:
 	float m_timeStep;
 	std::set<PhysicsObject*> m_actors;
 
-	static bool sphereToSPhere(Sphere* sphere1, Sphere* sphere2);
+	static bool sphereToSphere(Sphere* sphere1, Sphere* sphere2);
 };
 
