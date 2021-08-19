@@ -1,6 +1,7 @@
 #pragma once
 #include "glm/vec2.hpp"
 #include <set>
+#include "Sphere.h"
 
 class PhysicsObject;
 
@@ -27,6 +28,6 @@ private:
 	float m_timeStep;
 	std::set<PhysicsObject*> m_actors;
 
-	
+	static bool sphereToSPhere(Sphere* sphere1, Sphere* sphere2);
 };
 
