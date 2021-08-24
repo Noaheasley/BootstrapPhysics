@@ -27,7 +27,7 @@ typedef bool(*collisionCheck)(PhysicsObject*, PhysicsObject*);
 //Array of collision check functions
 static collisionCheck collisionFunctionArray[] = {
 	PhysicsScene::planeToPlane, PhysicsScene::planeToSphere, PhysicsScene::planeToBox,
-	PhysicsScene::sphereToPlane, PhysicsScene::planeToSphere, PhysicsScene::sphereToBox,
+	PhysicsScene::sphereToPlane, PhysicsScene::sphereToSphere, PhysicsScene::sphereToBox,
 	PhysicsScene::boxToPlane, PhysicsScene::boxToSphere, PhysicsScene::boxToBox
 };
 
@@ -130,7 +130,7 @@ bool PhysicsScene::sphereToPlane(PhysicsObject* object1, PhysicsObject* object2)
 bool PhysicsScene::sphereToSphere(PhysicsObject* object1, PhysicsObject* object2)
 {
 	Sphere* sphere1 = dynamic_cast<Sphere*>(object1);
-	Sphere* sphere2 = dynamic_cast<Sphere*>(object1);
+	Sphere* sphere2 = dynamic_cast<Sphere*>(object2);
 
 	if (sphere1 && sphere2)
 	{
