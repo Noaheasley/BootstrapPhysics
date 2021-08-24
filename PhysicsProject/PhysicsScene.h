@@ -23,11 +23,6 @@ public:
 	void setTimeStep(const float timeStep) { m_timeStep = timeStep; }
 	float getTimeStep() const { return m_timeStep; }
 
-private:
-	glm::vec2 m_gravity;
-	float m_timeStep;
-	std::set<PhysicsObject*> m_actors;
-
 	static bool planeToPlane(PhysicsObject* object1, PhysicsObject* object2);
 	static bool planeToSphere(PhysicsObject* object1, PhysicsObject* object2);
 	static bool planeToBox(PhysicsObject* object1, PhysicsObject* object2);
@@ -37,5 +32,16 @@ private:
 	static bool boxToPlane(PhysicsObject* object1, PhysicsObject* object2);
 	static bool boxToSphere(PhysicsObject* object1, PhysicsObject* object2);
 	static bool boxToBox(PhysicsObject* object1, PhysicsObject* object2);
+
+	
+private:
+
+
+
+	glm::vec2 m_gravity;
+	float m_timeStep;
+	std::set<PhysicsObject*> m_actors;
+
+	
 };
 

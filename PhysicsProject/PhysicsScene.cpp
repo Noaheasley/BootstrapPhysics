@@ -21,6 +21,16 @@ void PhysicsScene::removeActor(PhysicsObject* actor)
 	m_actors.erase(actor);
 }
 
+//Collision function pointer type
+typedef bool(*collisionCheck)(PhysicsObject*, PhysicsObject*);
+
+//Array of collision check functions
+static collisionCheck collisionFunctionArray[] = {
+	PhysicsScene::planeToPlane, PhysicsScene::planeToSphere, PhysicsScene::planeToBox,
+	PhysicsScene::sphereToPlane, PhysicsScene::planeToSphere, PhysicsScene::sphereToBox,
+	PhysicsScene::boxToPlane, PhysicsScene::boxToSphere, PhysicsScene::boxToBox
+};
+
 void PhysicsScene::update(float deltaTime)
 {
 	static float accumulatedTime = 0.0f;
@@ -44,12 +54,22 @@ void PhysicsScene::update(float deltaTime)
 			innerBegin++;
 			for (auto inner = innerBegin; inner != m_actors.end(); inner++) {
 				
+				//Get the physics objects
 				PhysicsObject* object1 = *outer;
 				PhysicsObject* object2 = *inner;
-				
-				//Collision check
-				sphereToPlane(object1, object2);
-				planeToSphere(object1, object2);
+
+				//Get the shape IDs
+				int shape1 = (int)(object1->getShapeID());
+				int shape2 = (int)(object2->getShapeID());
+
+				//Find the index using i = (y * w) + x
+				int i = (shape1 * (int)ShapeType::LENGTH) + shape2;
+				//Retrieve and call the collision check fromthe array
+				collisionCheck collisionFn = collisionFunctionArray[i];
+				if (collisionFn) 
+				{
+					collisionFn(object1, object2);
+				}
 			}
 		}
 	}
@@ -70,7 +90,7 @@ bool PhysicsScene::planeToPlane(PhysicsObject* object1, PhysicsObject* object2)
 
 bool PhysicsScene::planeToSphere(PhysicsObject* object1, PhysicsObject* object2)
 {
-	return sphereToPlane(object1, object2);
+	return sphereToPlane(object2, object1);
 }
 
 bool PhysicsScene::planeToBox(PhysicsObject* object1, PhysicsObject* object2)
@@ -96,6 +116,7 @@ bool PhysicsScene::sphereToPlane(PhysicsObject* object1, PhysicsObject* object2)
 		float planeDistance = plane->getDistance();
 		float sphereRadius = sphere->getRadius();
 		float sphereToPlaneDistance = glm::dot(sphereCenter, planeNormal) - planeDistance - sphereRadius;
+		
 		if (sphereToPlaneDistance <= 0)
 		{
 			sphere->applyForce(-sphere->getVelocity() * sphere->getMass());
@@ -119,7 +140,8 @@ bool PhysicsScene::sphereToSphere(PhysicsObject* object1, PhysicsObject* object2
 		float distance = glm::sqrt(distanceVec.x * distanceVec.x + distanceVec.y * distanceVec.y);
 		if (glm::abs(distance) < sphere1->getRadius() + sphere2->getRadius())
 		{
-			sphere1->applyForceToOther(sphere2, sphere1->getVelocity() * sphere1->getMass());
+			sphere1->applyForce(-(sphere1->getVelocity() * sphere1->getMass()));
+			sphere2->applyForce(-(sphere2->getVelocity() * sphere2->getMass()));
 			return true;
 		}
 	}
