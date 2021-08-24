@@ -1,10 +1,11 @@
 #include "Plane.h"
 #include "Gizmos.h"
+#include <glm/ext.hpp>
 
 Plane::Plane(glm::vec2 normal, float distance, glm::vec4 color) 
 	: PhysicsObject(ShapeType::PLANE)
 {
-	m_normal = normal;
+	m_normal = glm::normalize(normal);
 	m_distance = distance;
 	m_color = color;
 }
