@@ -1,5 +1,6 @@
 #include "PhysicsGame.h"
 #include "Sphere.h"
+#include "Plane.h"
 #include "Input.h"
 #include "Font.h"
 #include "Gizmos.h"
@@ -15,15 +16,36 @@ bool PhysicsGame::startup()
 	m_font = new aie::Font("../bin/font/consolas.ttf", 32);
 	
 	m_scene = new PhysicsScene();
-	m_scene->setTimeStep(0.01f);
-	m_scene->setGravity(glm::vec2{ 0.0f, 0.0f });
+	m_scene->setTimeStep(0.001f);
+	m_scene->setGravity(glm::vec2{ 0.0f, -10.0f });
 
 	Sphere* ball = new Sphere(glm::vec2(-20.0f, 0.0f), glm::vec2(), 1, 5, glm::vec4(0.8f, 0.2f, 0.2f, 1.0f));
 	m_scene->addActor(ball);
 	ball->applyForce(glm::vec2(20.0f, 0.0f));
 
-	Sphere* orb = new Sphere(glm::vec2(20.0f, 0), glm::vec2(), 1, 5, glm::vec4(0.2f, 0.8f, 0.8f, 1.0f));
-	m_scene->addActor(orb);
+	Sphere* cue = new Sphere(glm::vec2(20.0f, 0), glm::vec2(), 1, 5, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+	m_scene->addActor(cue);
+	cue->applyForce(glm::vec2(-20.0f, 0.0f));
+
+	Sphere* ball1 = new Sphere(glm::vec2(-10.0f, 0.0f), glm::vec2(), 1, 5, glm::vec4(0.8f, 0.2f, 0.2f, 0.0f));
+	m_scene->addActor(ball1);
+	ball1->applyForce(glm::vec2(20.0f, 30.0f));
+
+	Sphere* ball2 = new Sphere(glm::vec2(10.0f, 0), glm::vec2(), 1, 5, glm::vec4(0.2f, 0.8f, 0.8f, 1.0f));
+	m_scene->addActor(ball2);
+	ball2->applyForce(glm::vec2(-20.0f, 10.0f));
+
+	Plane* wallTop = new Plane(glm::vec2(0.0f, 55.0f), -55.0f, glm::vec4(0.2f, 0.8f, 0.2f, 1.0f));
+	m_scene->addActor(wallTop);
+
+	Plane* wallBottom = new Plane(glm::vec2(0.0f, -55.0f), -55.0f, glm::vec4(0.2f, 0.8f, 0.2f, 1.0f));
+	m_scene->addActor(wallBottom);
+
+	Plane* wallRight = new Plane(glm::vec2(1.0f, 0.0f), -90.0f, glm::vec4(0.2f, 0.8f, 0.2f, 1.0f));
+	m_scene->addActor(wallRight);
+
+	Plane* wallLeft = new Plane(glm::vec2(-1.0f, 0.0f), -90.0f, glm::vec4(0.2f, 0.8f, 0.2f, 1.0f));
+	m_scene->addActor(wallLeft);
 	return true;
 }
 
