@@ -2,7 +2,7 @@
 
 ## 1. Install instructions
 
-go to this link and look at assets and you'll see BootStrapRelease.zip
+go to this link and look at assets and you'll see BootStrapRelease.zip: https://github.com/Noaheasley/BootstrapPhysics/releases
 
 download the file and extract the folder
 
