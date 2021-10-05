@@ -70,6 +70,11 @@ void PhysicsGame::update(float deltaTime)
 	{
 		quit();
 	}
+	if (input->wasKeyPressed(aie::INPUT_KEY_ENTER))
+	{
+		Sphere* ball = new Sphere(glm::vec2(0.0f, 0.0f), glm::vec2(), 1, 5, glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
+		m_scene->addActor(ball);
+	}
 }
 
 void PhysicsGame::draw()
