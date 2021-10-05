@@ -13,10 +13,12 @@ public:
 
 	int run();
 
+	aie::ShaderProgram* getShader() { return m_shader; }
+
 private:
 	int start();
 	int update();
-	int draw();
+	int draw(aie::ShaderProgram* shader);
 	int end();
 	bool getGameOver();
 
@@ -25,7 +27,7 @@ private:
 	int m_width, m_height;
 	const char* m_title;
 
-	aie::ShaderProgram m_shader;
+	aie::ShaderProgram* m_shader = nullptr;
 
 	World* m_world;
 };
