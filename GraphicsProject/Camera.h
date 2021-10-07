@@ -1,5 +1,5 @@
 #pragma once
-#include "glm/mat4x4.hpp"
+#include "Transform.h"
 class Camera
 {
 public:
@@ -18,7 +18,7 @@ public:
 	void setFarClip(float farClip) { m_farClip = farClip; }
 
 private:
-	glm::mat4 m_transform = glm::mat4(1.0f);
+	Transform m_transform = Transform();
 	float m_fieldOfView = 45.0f;
 	float m_nearClip = 0.001f;
 	float m_farClip = 1000.0f;
