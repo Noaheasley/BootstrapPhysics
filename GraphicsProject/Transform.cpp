@@ -47,6 +47,7 @@ glm::mat4 Transform::getMatrix()
 		matrix = glm::rotate(matrix, m_rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
 		matrix = glm::scale(matrix, m_scale);
 		m_matrix = matrix;
+		m_shouldUpdateMatrix = false;
 	}
 	return m_matrix;
 }

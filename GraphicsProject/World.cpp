@@ -10,6 +10,9 @@ World::World(int width, int height) : World()
 
 void World::start()
 {
+	//Initialize the OBJ mesh
+	m_objMesh.load("Buddha.obj", false);
+	//Initialize the quad
 	m_quad.setTransform(glm::mat4(1.0f));
 	m_quad.setColor(glm::vec4(0.2f, 0.8f, 0.6f, 1.0f));
 	m_quad.start();
@@ -47,8 +50,8 @@ void World::update(double deltaTime)
 	int keyUp = GLFW_KEY_E;
 	int keyDown = GLFW_KEY_Q;
 
-	float cameraSpeed = 10.0f;
-	float cameraSensitivity = 1.0f;
+	float cameraSpeed = 1.0f;
+	float cameraSensitivity = 0.5f;
 
 	//Calculate the camera's forward vector
 	glm::vec3 cameraForward = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -129,8 +132,10 @@ void World::draw(aie::ShaderProgram* shader)
 	shader->bindUniform("lightAmbient", m_light.getAmbient());
 	shader->bindUniform("lightDiffuse", m_light.getDiffuse());
 	shader->bindUniform("lightSpecular", m_light.getSpecular());
-	shader->bindUniform("specularPower", m_light.getSpecularPower());
-	m_quad.draw(shader);
+	shader->bindUniform("lightSpecularPower", m_light.getSpecularPower());
+	//m_quad.draw(shader);
+	shader->bindUniform("modelMatrix", m_objTransform);
+	m_objMesh.draw();
 }
 
 void World::end()

@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include "Camera.h"
 #include"Quad.h"
+#include"OBJMesh.h"
 #include "glm\mat4x4.hpp"
 struct GLFWwindow;
 
@@ -27,6 +28,8 @@ private:
 	Camera m_camera = Camera();
 	glm::mat4 m_projectionMatrix = glm::mat4(1.0f);
 
+	aie::OBJMesh m_objMesh;
+	glm::mat4 m_objTransform;
 	Quad m_quad = Quad(glm::vec4(0.6f, 0.2f, 0.6f, 1.0f));
 	Light m_light;
 

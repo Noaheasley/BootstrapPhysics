@@ -39,7 +39,7 @@ int Engine::run()
 
 	while (!getGameOver()) {
 		//get current time
-		currentTime - glfwGetTime();
+		currentTime = glfwGetTime();
 		//Find the change in time
 		deltaTime = currentTime - previousTime;
 		//Store the current time for the next 
