@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include"Quad.h"
 #include "glm\mat4x4.hpp"
-class GLFWwindow;
+struct GLFWwindow;
 
 class World
 {

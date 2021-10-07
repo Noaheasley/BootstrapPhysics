@@ -8,8 +8,8 @@ public:
 		: m_fieldOfView{ fieldOfView }, m_nearClip{ nearClip }, m_farClip{ farClip } {}
 	~Camera() {}
 
-	glm::mat4 getTransform() { return m_transform; }
-	void setTransform(glm::mat4 transform) { m_transform = transform; }
+	Transform getTransform() { return m_transform; }
+	void setTransform(Transform transform) { m_transform = transform; }
 	float getFieldOfView() { return m_fieldOfView; }
 	void setFieldOfView(float fieldOfView) { m_fieldOfView = fieldOfView; }
 	float getNearClip() { return m_nearClip; }

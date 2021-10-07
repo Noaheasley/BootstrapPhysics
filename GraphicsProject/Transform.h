@@ -8,6 +8,10 @@ public:
 	Transform() {}
 	~Transform() {}
 
+	void translate(glm::vec3 translation);
+	void rotate(glm::vec3 rotation);
+	void scale(glm::vec3 scale);
+
 	glm::vec3 getPosition() { return m_position; }
 	void setPosition(glm::vec3 position);
 	glm::vec3 getRotation() { return m_rotation; }
