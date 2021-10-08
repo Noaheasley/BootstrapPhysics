@@ -13,11 +13,14 @@ void World::start()
 	m_quad.start();
 
 	//Create camera transform
-	m_camera.setTransform(glm::lookAt(
-		glm::vec3(1.0f, 1.0f, 1.0f),
-		glm::vec3(0.0f),
-		glm::vec3(0.0f, 1.0f, 0.0f)
-	));
+	//m_camera.setTransform(glm::lookAt(
+	//	glm::vec3(1.0f, 1.0f, 1.0f),
+	//	glm::vec3(0.0f),
+	//	glm::vec3(0.0f, 1.0f, 0.0f)
+	//));
+	m_camera.setPosition(glm::vec3(10.0f, 10.0f, 10.0f));
+	m_camera.setYaw(-135.0f);
+	m_camera.setPitch(-5.0f);
 	m_projectionMatrix = glm::perspective(
 		m_camera.getFieldOfView() * glm::pi<float>() / 180.0f,
 		(float)m_width / (float)m_height,
@@ -41,5 +44,5 @@ void World::end()
 
 glm::mat4 World::getProjectionViewModel()
 {
-	return m_projectionMatrix * m_camera.getTransform() * m_quad.getTransform();
+	return m_projectionMatrix * m_camera.getViewMatrix() * m_quad.getTransform();
 }
