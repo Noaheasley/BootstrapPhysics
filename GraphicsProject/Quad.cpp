@@ -29,5 +29,14 @@ Quad::Vertex* Quad::generateVertices(unsigned int& vertexCount, unsigned int& tr
 	vertices[0].color = { 1.0f, 1.0f, 1.0f, 1.0f };
 	vertices[5].color = { 1.0f, 1.0f, 1.0f, 1.0f };
 
+	//triangle 0
+	vertices[0].texCoord = { 0.0f, 1.0f };
+	vertices[1].texCoord = { 1.0f, 1.0f };
+	vertices[2].texCoord = { 0.0f, 0.0f };
+	//triangle 1
+	vertices[3].texCoord = { 1.0f, 0.0f };
+	vertices[4].texCoord = { 0.0f, 0.0f };
+	vertices[5].texCoord = { 1.0f, 0.0f };
+
 	return vertices;
 }

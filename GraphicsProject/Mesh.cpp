@@ -79,6 +79,17 @@ void Mesh::start()
 		(void*)sizeof(glm::vec4)//memory position of this attribute
 		);
 
+	//Enable vertex color as second attribute
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(
+		2,						//attribute index
+		2,						//number of values within attribute
+		GL_FLOAT,				//type of each value
+		GL_FALSE,				//whether to normalize
+		sizeof(Vertex),			//size in bytes of one vertex
+		(void*)(sizeof(glm::vec4) * 2)
+	);
+
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
