@@ -1,5 +1,6 @@
 #include "World.h"
-#include "glm\ext.hpp"
+#include "gl_core_4_4.h"
+#include "glm/ext.hpp"
 
 World::World(int width, int height) : World()
 {
@@ -9,18 +10,17 @@ World::World(int width, int height) : World()
 
 void World::start()
 {
-	m_quad.setTransform(glm::mat4(1.0f));
+	//Initialize the quad
+	m_quad.setTransform(glm::mat4(10.0f));
 	m_quad.start();
+	if (!m_earthDiffuse.load("earth_diffuse.jpg")) {
+		printf("Failed to load texture.\n");
+	}
 
-	//Create camera transform
-	//m_camera.setTransform(glm::lookAt(
-	//	glm::vec3(1.0f, 1.0f, 1.0f),
-	//	glm::vec3(0.0f),
-	//	glm::vec3(0.0f, 1.0f, 0.0f)
-	//));
-	m_camera.setPosition(glm::vec3(10.0f, 10.0f, 10.0f));
+	//Create camera transforms
+	m_camera.setPosition(glm::vec3(1.0f, 1.0f, 1.0f));
 	m_camera.setYaw(-135.0f);
-	m_camera.setPitch(-5.0f);
+	m_camera.setPitch(-35.0f);
 	m_projectionMatrix = glm::perspective(
 		m_camera.getFieldOfView() * glm::pi<float>() / 180.0f,
 		(float)m_width / (float)m_height,
@@ -35,6 +35,17 @@ void World::update()
 
 void World::draw()
 {
+	int program = -1;
+	glGetIntegerv(GL_CURRENT_PROGRAM, &program);
+	if (program == -1)
+		printf("No shader bound.\n");
+
+	int diffuseTextureUniform = glGetUniformLocation(program, "diffuseTexture");
+	if (diffuseTextureUniform >= 0)
+		glUniform1i(diffuseTextureUniform, 0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, m_earthDiffuse.getHandle());
+
 	m_quad.draw();
 }
 
